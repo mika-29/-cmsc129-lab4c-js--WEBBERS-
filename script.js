@@ -32,7 +32,8 @@ function time_now() {
 }
 
 // add student
-const submissions = [];
+submissions = [];
+studentNumber = 0;
 
 function validateForm(event) {
     event.preventDefault();
@@ -78,7 +79,9 @@ function validateForm(event) {
     }
 
     if (isValid) {
+        studentNumber++;
         const submission = {
+            studentNumber: studentNumber,
             name: name,
             age: age,
             mail: mail,
