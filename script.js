@@ -1,4 +1,4 @@
-// add student
+// time
 function getMonthName(monthNumber) {
     const monthNames = ['January', 'February', 'March', ' April',
         'May', 'June', 'July', 'August', 'September', 'October',
@@ -30,6 +30,69 @@ function time_now() {
     const newTime = "The current time is " + hours + ":" + minutes + " " + format;
     document.getElementById('current-time').innerHTML=newTime;
 }
+
+// add student
+const submissions = [];
+
+function validateForm(event) {
+    event.preventDefault();
+
+    let isValid = true;
+    // form values
+    const name = document.forms["Form"]["name"].value.trim();
+    const age = document.forms["Form"]["age"].value.trim();
+    const mail = document.forms["Form"]["mail"].value.trim();
+    const course = document.forms["Form"]["course"].value;
+    
+    const nameError = document.getElementById("nameError");
+    const ageError = document.getElementById("ageError");
+    const mailError = document.getElementById("mailError");
+
+    const namePattern = /^\s*[A-Za-z]+(\s+[A-Za-z]+)+\s*$/;
+    if (!name.match(namePattern)) {
+        nameError.textContent = "Please write your first and last name.";
+        nameError.style.color = "red";
+        isValid = false;
+    }
+    else {
+        nameError.textContent = "";
+    }
+    
+    if (age <= 0 ) {
+        ageError.textContent = "Please input a valid age.";
+        ageError.style.color = "red";
+        isValid = false;
+    }
+    else {
+        ageError.textContent = "";
+    }
+
+    const mailPattern = /^[a-zA-Z0-9._%+-]+@up\.edu\.ph$/;
+    if (!mail.match(mailPattern)) {
+        mailError.textContent = "Please enter a valid UP mail address";
+        mailError.style.color = "red";
+        isValid = false;
+    }
+    else {
+        mailError.textContent = "";
+    }
+
+    if (isValid) {
+        const submission = {
+            name: name,
+            age: age,
+            mail: mail,
+            course: course
+        };
+
+        submissions.push(submission);
+        alert("Information Submitted!");
+    }
+}
+
+document.getElementById("Form").addEventListener("submit", validateForm);
+
+
 // search student
 
 // display student

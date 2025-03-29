@@ -11,21 +11,26 @@
     <div id="current-time"></div>
     <section class="add-student">
         <h1>Add Student</h1>
-        <form>
+        <form name="Form" id="Form">
             <label for="name">Name:</label><br>
-            <input id="name" name="name"><br>
+            <input id="name" name="name" required><br>
+            <span id="nameError" class="error"></span><br>
             <label for="age">Age:</label><br>
-            <input id="age" name="age"><br>
+            <input type="number" id="age" name="age" required><br>
+            <span id="ageError" class="error"></span><br>
             <label for="mail">UP Mail:</label><br>
-            <input id="mail" name="mail"><br>
+            <input id="mail" name="mail" required><br>
+            <span id="mailError" class="error"></span><br>
             <label for="course">Course:</label><br>
-            <select name="course">
+            <select name="course" id="course" required>
+                <option value="" disabled selected>Select Your Course</option>
                 <option value="food-appreciation">BA Food Appreciation</option>
                 <option value="applied-poetry-of-the-future">BA Applied Poetry of the Future</option>
                 <option value="computer-repair-shop">BS Computer Repair Shop</option>
                 <option value="video-gaming">BS Video Gaming</option>
                 <option value="installing-and-downloading">BS Installing and Downloading</option>
-            </select>
+            </select><br><br>
+            <button type="submit">Submit</button>
         </form>
     </section>
     <section class="search-student">
