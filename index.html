@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Log</title>
 </head>
+<center>
 <body>
     <button class="current-date" onclick="time_now()">Show Current Date</button>
     <div id="current-date"></div>
@@ -12,6 +13,8 @@
     <section class="add-student">
         <h1>Add Student</h1>
         <form name="Form" id="Form">
+            <label for="studentNumber">Student Number:</label><br>
+            <input id="studentNumber" name="studentNumber" readonly><br>
             <label for="name">Name:</label><br>
             <input id="name" name="name" required><br>
             <span id="nameError" class="error"></span><br>
@@ -38,7 +41,7 @@
         <label for="search">Search Student Number:</label><br>
         <input id="search" name="search"><br>
         <button class="search-button">Search</button> 
-        <div id="search"></div>
+        <div id="search-results"></div>
     </section>
     <section classs="display-students">
         <h1>Display All Students</h1>
@@ -47,4 +50,5 @@
     </section>
     <script src="script.js"></script>
 </body>
+</center>
 </html>
