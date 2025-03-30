@@ -32,27 +32,7 @@ function time_now() {
 }
 
 // add student
-submissions = [];
-let currentStudentNumber; 
-
-window.onload = function () {
-    currentStudentNumber = document.getElementById("studentNumber").value = generateStudentNumber();
-};
-
-function generateStudentNumber(){
-    const year = "2023-";
-
-    let uniqueID
-    let isUnique = false; 
-
-    while(!isUnique){
-        uniqueID = String(Math.floor(10000 + Math.random() * 90000)); 
-
-        isUnique = !submissions.some(student => student.studentNumber === year + uniqueID);
-    }
-
-    return year + uniqueID; 
-}
+const submissions = [];
 
 function validateForm(event) {
     event.preventDefault();
@@ -98,9 +78,7 @@ function validateForm(event) {
     }
 
     if (isValid) {
-        const studentNumber = currentStudentNumber; 
         const submission = {
-            studentNumber: studentNumber,
             name: name,
             age: age,
             mail: mail,
@@ -108,7 +86,7 @@ function validateForm(event) {
         };
 
         submissions.push(submission);
-        alert("Information Submitted! Student Number: " + studentNumber);
+        alert("Information Submitted!");
     }
 }
 
@@ -117,7 +95,7 @@ document.getElementById("Form").addEventListener("submit", validateForm);
 
 // search student
 function find_student(){
-    let searchInput = document.getElementById("search").value.trim();
+    let searchInput = document.getElementById("search-number").value.trim();
     let searchResults = document.getElementById("search-results");
 
     if(searchInput === ""){
@@ -125,11 +103,11 @@ function find_student(){
         return;
     } 
 
-    let student = submissions.find(student => student.studentNumber === searchInput);
+    let student = submissions.find(student => student.number === searchInput);  ///hindi pa final to 
 
     if(student) {
         searchResults.innerHTML = `
-        <p><strong>Student Number: </strong> ${student.studentNumber}</p>
+        <p><strong>Student Number: </strong> ${student.number}</p>
         <p><strong>Student Name: </strong> ${student.name}</p>
         <p><strong>Student Age: </strong> ${student.age}</p>
         <p><strong>Student UP Mail: </strong> ${student.mail}</p>
@@ -139,7 +117,5 @@ function find_student(){
         searchResults.innerHTML = "<p>Student record does not exist.</p>"; 
     }
 }
-
-document.querySelector(".search-button").addEventListener("click", find_student);
 
 // display student
