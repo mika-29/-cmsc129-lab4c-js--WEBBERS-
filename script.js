@@ -96,6 +96,7 @@ function validateForm(event) {
     else {
         mailError.textContent = "";
     }
+    
 
     if (isValid) {
         const studentNumber = currentStudentNumber; 
@@ -110,6 +111,7 @@ function validateForm(event) {
         submissions.push(submission);
         alert("Information Submitted! Student Number: " + studentNumber);
     }
+    //document.getElementById("Form").reset(); 
 }
 
 document.getElementById("Form").addEventListener("submit", validateForm);
