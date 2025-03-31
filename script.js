@@ -40,7 +40,7 @@ window.onload = function () {
 };
 
 function generateStudentNumber(){
-    const year = "2023-";
+    const year = "2023";                   
 
     let uniqueID
     let isUnique = false; 
@@ -78,7 +78,7 @@ function validateForm(event) {
         nameError.textContent = "";
     }
     
-    if (age <= 0 ) {
+    if (age < 18 || age > 99) {                                        //maybe try to edit this na if magvalid na yung age is mawala na ang "please input valid age prompt"
         ageError.textContent = "Please input a valid age.";
         ageError.style.color = "red";
         isValid = false;
@@ -102,7 +102,7 @@ function validateForm(event) {
     if (isValid) {
         const studentNumber = currentStudentNumber; 
         const submission = {
-            studentNumber: studentNumber.replace("-",""),
+            studentNumber: studentNumber,
             name: name,
             age: age,
             mail: mail,
