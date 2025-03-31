@@ -101,7 +101,7 @@ function validateForm(event) {
     if (isValid) {
         const studentNumber = currentStudentNumber; 
         const submission = {
-            studentNumber: studentNumber,
+            studentNumber: studentNumber.replace("-",""),
             name: name,
             age: age,
             mail: mail,
@@ -151,16 +151,13 @@ document.querySelector(".search-button").addEventListener("click", find_student)
 function display_student() {
     let displayResults = document.getElementById("display");
 
-    // Check if there are student records
     if (submissions.length === 0) {
         displayResults.innerHTML = "<p>No student records available.</p>";
         return;
     }
 
-    // Create the table structure
     let tableHTML = `
-        <h3>Student List</h3>
-        <table border="1">
+        <table border=1>
             <thead>
                 <tr>
                     <th>Student Number</th>
@@ -173,7 +170,6 @@ function display_student() {
             <tbody>
     `;
 
-    // Loop through student records and add rows
     submissions.forEach(student => {
         tableHTML += `
             <tr>
@@ -191,7 +187,7 @@ function display_student() {
         </table>
     `;
 
-    displayResults.innerHTML = tableHTML; // ✅ Ensure the table is set inside the element
+    displayResults.innerHTML = tableHTML
 }
 
 document.querySelector(".display-button").addEventListener("click", display_student);
