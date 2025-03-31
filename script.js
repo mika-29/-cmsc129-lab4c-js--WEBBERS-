@@ -97,6 +97,7 @@ function validateForm(event) {
         mailError.textContent = "";
     }
 
+
     if (isValid) {
         const studentNumber = currentStudentNumber; 
         const submission = {
@@ -109,6 +110,10 @@ function validateForm(event) {
 
         submissions.push(submission);
         alert("Information Submitted! Student Number: " + studentNumber);
+        document.getElementById("Form").reset();
+
+        currentStudentNumber = generateStudentNumber();
+        document.getElementById("studentNumber").value = currentStudentNumber;
     }
 }
 
@@ -143,3 +148,53 @@ function find_student(){
 document.querySelector(".search-button").addEventListener("click", find_student);
 
 // display student
+function display_student() {
+    let displayResults = document.getElementById("display");
+
+    // Check if there are student records
+    if (submissions.length === 0) {
+        displayResults.innerHTML = "<p>No student records available.</p>";
+        return;
+    }
+
+    // Create the table structure
+    let tableHTML = `
+        <h3>Student List</h3>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Student Number</th>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>UP Mail</th>
+                    <th>Course</th>
+                </tr>
+            </thead>
+            <tbody>
+    `;
+
+    // Loop through student records and add rows
+    submissions.forEach(student => {
+        tableHTML += `
+            <tr>
+                <td>${student.studentNumber}</td>
+                <td>${student.name}</td>
+                <td>${student.age}</td>
+                <td>${student.mail}</td>
+                <td>${student.course}</td>
+            </tr>
+        `;
+    });
+
+    tableHTML += `
+            </tbody>
+        </table>
+    `;
+
+    displayResults.innerHTML = tableHTML; // ✅ Ensure the table is set inside the element
+}
+
+document.querySelector(".display-button").addEventListener("click", display_student);
+
+
+
