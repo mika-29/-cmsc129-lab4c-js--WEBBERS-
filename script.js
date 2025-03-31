@@ -98,10 +98,11 @@ function validateForm(event) {
     }
     
 
+
     if (isValid) {
         const studentNumber = currentStudentNumber; 
         const submission = {
-            studentNumber: studentNumber,
+            studentNumber: studentNumber.replace("-",""),
             name: name,
             age: age,
             mail: mail,
@@ -110,6 +111,10 @@ function validateForm(event) {
 
         submissions.push(submission);
         alert("Information Submitted! Student Number: " + studentNumber);
+        document.getElementById("Form").reset();
+
+        currentStudentNumber = generateStudentNumber();
+        document.getElementById("studentNumber").value = currentStudentNumber;
     }
     //document.getElementById("Form").reset(); 
 }
@@ -145,3 +150,49 @@ function find_student(){
 document.querySelector(".search-button").addEventListener("click", find_student);
 
 // display student
+function display_student() {
+    let displayResults = document.getElementById("display");
+
+    if (submissions.length === 0) {
+        displayResults.innerHTML = "<p>No student records available.</p>";
+        return;
+    }
+
+    let tableHTML = `
+        <table border=1>
+            <thead>
+                <tr>
+                    <th>Student Number</th>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>UP Mail</th>
+                    <th>Course</th>
+                </tr>
+            </thead>
+            <tbody>
+    `;
+
+    submissions.forEach(student => {
+        tableHTML += `
+            <tr>
+                <td>${student.studentNumber}</td>
+                <td>${student.name}</td>
+                <td>${student.age}</td>
+                <td>${student.mail}</td>
+                <td>${student.course}</td>
+            </tr>
+        `;
+    });
+
+    tableHTML += `
+            </tbody>
+        </table>
+    `;
+
+    displayResults.innerHTML = tableHTML
+}
+
+document.querySelector(".display-button").addEventListener("click", display_student);
+
+
+
