@@ -69,7 +69,6 @@ function validateForm(event) {
         nameError.textContent = "Please write your first and last name.";
         nameError.style.color = "red";
         isValid = false;
-        setTimeout(function() {nameError.textContent = "";}, 5000);
     }
     else {
         nameError.textContent = "";
