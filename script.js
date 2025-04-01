@@ -75,15 +75,13 @@ function validateForm(event) {
         nameError.textContent = "";
     }
 
-    document.getElementById("name").onclick = function() {
-        nameError.style.display = "none"; 
-    };
-     document.getElementById("age").onclick = function() {
-        ageError.style.display = "none"; 
-    };
-     document.getElementById("mail").onclick = function() {
-        mailError.style.display = "none"; 
-    };
+    const inputFields = ["name", "age", "mail"];
+
+    inputFields.forEach((id) => {
+        document.getElementById(id).onclick = function () {
+            document.getElementById(id + "Error").style.display = "none";
+        };
+    });
 
     if (age <= 18 || age >= 99) {
         ageError.textContent = "Please input a valid age.";
