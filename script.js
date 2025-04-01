@@ -78,7 +78,9 @@ function validateForm(event) {
         ageError.textContent = "Please input a valid age.";
         ageError.style.color = "red";
         isValid = false;
+        setTimeout(function() {ageError.textContent = "";}, 3000);
     }
+
     else {
         ageError.textContent = "";
     }
