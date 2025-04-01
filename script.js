@@ -18,7 +18,7 @@ function time_now() {
     const year = dateObj.getFullYear();
     const dayOfWeek = dateObj.getDay();
     const dayOfWeekName = getDayOfWeekName(dayOfWeek);
-    const month = dateObj.getMonth() + 1;
+    const month = dateObj.getMonth();
     const monthName = getMonthName(month);
     const newDate = "Today is " + monthName + " " + day + ", " + year + ", " + dayOfWeekName; 
     document.getElementById('current-date').innerHTML= newDate; 
@@ -69,20 +69,29 @@ function validateForm(event) {
         nameError.textContent = "Please write your first and last name.";
         nameError.style.color = "red";
         isValid = false;
+        setTimeout(function() {nameError.textContent = "";}, 5000);
     }
     else {
         nameError.textContent = "";
     }
-    
-    if (age <= 18 || age >= 99) {                                        
+
+    document.getElementById("name").onclick = function() {
+        nameError.style.display = "none"; 
+    };
+     document.getElementById("age").onclick = function() {
+        ageError.style.display = "none"; 
+    };
+     document.getElementById("mail").onclick = function() {
+        mailError.style.display = "none"; 
+    };
+
+    if (age <= 18 || age >= 99) {
         ageError.textContent = "Please input a valid age.";
         ageError.style.color = "red";
         isValid = false;
-        setTimeout(function() {ageError.textContent = "";}, 3000);
-    }
-
+    } 
     else {
-        ageError.textContent = "";
+        ageError.textContent = ""; 
     }
 
     const mailPattern = /^[a-zA-Z0-9._%+-]+@up\.edu\.ph$/;
@@ -94,7 +103,6 @@ function validateForm(event) {
     else {
         mailError.textContent = "";
     }
-    
 
     if (isValid) {
         const studentNumber = generateStudentNumber(); 
