@@ -35,10 +35,6 @@ function time_now() {
 submissions = [];
 let currentStudentNumber; 
 
-window.onload = function () {
-    currentStudentNumber = document.getElementById("studentNumber").value = generateStudentNumber();
-};
-
 function generateStudentNumber(){
     const year = "2023";                   
 
@@ -78,7 +74,7 @@ function validateForm(event) {
         nameError.textContent = "";
     }
     
-    if (age < 18 || age > 99) {                                        //maybe try to edit this na if magvalid na yung age is mawala na ang "please input valid age prompt"
+    if (age <= 18 || age >= 99) {                                        
         ageError.textContent = "Please input a valid age.";
         ageError.style.color = "red";
         isValid = false;
@@ -98,9 +94,8 @@ function validateForm(event) {
     }
     
 
-
     if (isValid) {
-        const studentNumber = currentStudentNumber; 
+        const studentNumber = generateStudentNumber(); 
         const submission = {
             studentNumber: studentNumber,
             name: name,
@@ -116,7 +111,6 @@ function validateForm(event) {
         currentStudentNumber = generateStudentNumber();
         document.getElementById("studentNumber").value = currentStudentNumber;
     }
-    //document.getElementById("Form").reset(); 
 }
 
 document.getElementById("Form").addEventListener("submit", validateForm);
