@@ -38,7 +38,7 @@ let currentStudentNumber;
 function generateStudentNumber(){
     const year = "2023";                   
 
-    let uniqueID
+    let uniqueID;
     let isUnique = false; 
 
     while(!isUnique){
