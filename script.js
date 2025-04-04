@@ -79,8 +79,8 @@ function validateForm(event) {
     inputFields.forEach((id) => {
         document.getElementById(id).onclick = function () {
             document.getElementById(id + "Error").style.display = "none";
-        };
-    });
+        }
+    })
 
     if (age <= 18 || age >= 99) {
         ageError.textContent = "Please input a valid age.";
@@ -114,9 +114,6 @@ function validateForm(event) {
         submissions.push(submission);
         alert("Information Submitted! Student Number: " + studentNumber);
         document.getElementById("Form").reset();
-
-        currentStudentNumber = generateStudentNumber();
-        document.getElementById("studentNumber").value = currentStudentNumber;
     }
 }
 
@@ -152,7 +149,7 @@ document.querySelector(".search-button").addEventListener("click", find_student)
 
 // display student
 function display_student() {
-    let displayResults = document.getElementById("display");
+    let displayResults = document.getElementById("display")
 
     if (submissions.length === 0) {
         displayResults.innerHTML = "<p>No student records available.</p>";
@@ -183,7 +180,7 @@ function display_student() {
                 <td>${student.course}</td>
             </tr>
         `;
-    });
+    })
 
     tableHTML += `
             </tbody>
