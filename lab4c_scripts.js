@@ -31,7 +31,7 @@ function time_now() {
     document.getElementById('current-time').innerHTML=newTime;
 }
 
-function submission(studentNumber, name,age,mail,course) {
+function Student(studentNumber, name,age,mail,course) {
         this.studentNumber = studentNumber,
         this.name = name,
         this.age = age,
@@ -104,7 +104,7 @@ function validateForm(event) {
     if (isValid) {
         const studentNumber = generateStudentNumber(); 
         
-        const student = new submission(studentNumber, name,age,mail,course);
+        const student = new Student(studentNumber, name,age,mail,course);
 
         submissions.push(student);
         alert("Information Submitted! Student Number: " + studentNumber);
