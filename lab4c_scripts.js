@@ -64,41 +64,33 @@ function validateForm(event) {
     const ageError = document.getElementById("ageError");
     const mailError = document.getElementById("mailError");
 
+    nameError.textContent = "";
+    ageError.textContent = "";
+    mailError.textContent = "";
+    
     const namePattern = /^\s*[A-Za-z]+(\s+[A-Za-z]+)+\s*$/;
-    if (!name.match(namePattern)) {
+    if (name.length < 5) {
+        nameError.textContent = "Name must be at least 5 characters long.";
+        nameError.style.color = "red";
+        isValid = false;
+    }
+    else if (!name.match(namePattern)) {
         nameError.textContent = "Please write your first and last name.";
         nameError.style.color = "red";
         isValid = false;
     }
-    else {
-        nameError.textContent = "";
-    }
-
-    const inputFields = ["name", "age", "mail"];
-
-    inputFields.forEach((id) => {
-        document.getElementById(id).onclick = function () {
-            document.getElementById(id + "Error").style.display = "none";
-        };
-    });
 
     if (age <= 18 || age >= 99) {
         ageError.textContent = "Please input a valid age.";
         ageError.style.color = "red";
         isValid = false;
     } 
-    else {
-        ageError.textContent = ""; 
-    }
 
     const mailPattern = /^[a-zA-Z0-9._%+-]+@up\.edu\.ph$/;
     if (!mail.match(mailPattern)) {
         mailError.textContent = "Please enter a valid UP mail address";
         mailError.style.color = "red";
         isValid = false;
-    }
-    else {
-        mailError.textContent = "";
     }
 
     if (isValid) {
